@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Loan Product Assistant – Bank of Maharashtra
 
 ## Project Overview
@@ -152,16 +151,3 @@ python main.py
 - Optimize retrieval with **hybrid or advanced vector databases**.  
 - Implement **feedback loop and question logging** to improve response accuracy over time.  
 
-
-=======
-# LoanGPT-AI-Loan-Product-Assistant
-
-**LoanGPT – AI Loan Product Assistant**: An intelligent AI tool for Bank of Maharashtra loan products, leveraging a lightweight Retrieval-Augmented Generation (RAG) pipeline to provide accurate, context-aware answers to user queries quickly and efficiently.
-
-## Key Features
-
-- **Data Scraping & Processing**: Collects and cleans loan-specific information from the official Bank of Maharashtra website.
-- **Knowledge Base Creation**: Structures data into high-quality chunks for semantic search and efficient retrieval.
-- **Lightweight RAG Pipeline**: Uses FAISS vector store and an LLM to generate precise, context-aware responses.
-- **Flexible Interfaces**: Supports both console-based querying and a full UI version for user convenience.
-- **Practical AI Deployment**: Demonstrates real-world AI applications in banking, including RAG pipeline implementation and data handling.
