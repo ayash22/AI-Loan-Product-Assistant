@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Bank of Maharashtra Loan Assistant</title>
+<style>
+:root {
+  --bg:#e6f0fb;
+  --accent:#25D366;
+  --muted:#7a869a;
+  --bubble-in:#ffffff;
+  --bubble-out:#dcf8c6;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); height: 100vh; display: flex; align-items: center; justify-content: center; }
+.app { width: min(100%, 2000px); height: min(100vh, 1000px); background: linear-gradient(180deg,#ffffff 0%, #f8fafc 100%); box-shadow: 0 10px 30px rgba(20,20,30,0.08); border-radius: 12px; display: flex; flex-direction: column; overflow: hidden; }
+.chat { display: flex; flex-direction: column; height: 100%; }
+.chat-header { display:flex; align-items:center; gap:12px; padding:16px; background: #0d47a1; color: white; position: relative; flex-shrink: 0; }
+.avatar{ width:44px; height:44px; border-radius:50%; background:linear-gradient(180deg,#ddd,#bbb); display:flex; align-items:center; justify-content:center; font-weight:600; color:red; }
+.title{ font-weight:700; font-size:18px; }
+.subtitle{ font-size:12px; color:white; opacity:0.85; }
+.messages { flex: 1 1 auto; padding: 20px; overflow-y: auto; background: var(--bg); display: flex; flex-direction: column; min-height: 0; }
+.message-row{display:flex;margin-bottom:12px;align-items:flex-end}
+.message-row.out{justify-content:flex-end}
+.bubble { max-width:65%; padding:10px 14px; border-radius:14px; box-shadow:0 2px 0 rgba(0,0,0,0.02); font-size:14px; line-height:1.3; }
+.bubble.in {background:var(--bubble-in);border:1px solid #eef2f6;border-bottom-left-radius:4px}
+.bubble.out {background:var(--bubble-out);border-bottom-right-radius:4px}
+.meta-small {font-size:12px;color:var(--muted);margin-top:6px}
+.composer { padding:14px; display:flex; gap:10px; align-items:center; background:white; box-shadow: 0 -3px 8px rgba(0,0,0,0.08); border-bottom-left-radius:12px; border-bottom-right-radius:12px; flex-shrink: 0; }
+.composer input { flex:1; padding:12px; border-radius:999px; border:1px solid #e6e9ef; outline:none; font-size:14px; box-shadow:0 0 8px rgba(37,211,102,0.3); transition: box-shadow 0.3s; }
+.composer input:focus { box-shadow:0 0 12px rgba(37,211,102,0.6); }
+.btn { background:var(--accent); color:white; padding:10px 14px; border-radius:999px; border:0; cursor:pointer; }
+.icon-btn { background:transparent; border:0; cursor:pointer; padding:8px; border-radius:8px; font-size:18px; }
+.typing { font-size:12px; color:var(--muted); margin-bottom:8px; font-style:italic; }
+.date-separator { text-align: center; margin: 20px 0; font-size: 12px; font-weight: 600; color: #6b7a99; position: relative; }
+.date-separator::before, .date-separator::after { content: ""; position: absolute; top: 50%; width: 35%; height: 1px; background: #c7d4ea; }
+.date-separator::before { left: 0; } .date-separator::after { right: 0; }
+.menu-dropdown { display:none; position:absolute; top:50px; right:16px; background:white; box-shadow: 0 2px 8px rgba(0,0,0,0.2); border-radius:8px; overflow:hidden; z-index: 10; }
+.menu-dropdown button { display:block; width:100%; padding:10px 16px; border:none; background:none; text-align:left; cursor:pointer; font-size:14px; }
+.menu-dropdown button:hover { background:#f0f0f0; }
+@media (max-width:600px) { .bubble { max-width:85%; } }
+</style>
+</head>
+<body>
+<div class="app">
+  <main class="chat">
+    <div class="chat-header">
+      <div class="avatar" id="chatAvatar">B</div>
+      <div style="flex:1">
+        <div class="title" id="chatTitle">Bank of Maharashtra Loan Assistant</div>
+        <div class="subtitle" id="chatSubtitle">Online</div>
+      </div>
+      <button class="icon-btn" id="menuBtn">⋮</button>
+      <div class="menu-dropdown" id="menuDropdown">
+        <button id="clearChatBtn">Clear Chat</button>
+      </div>
+    </div>
+
+    <div class="messages" id="messages" aria-live="polite"></div>
+
+    <div class="composer">
+      <input id="messageInput" placeholder="Type a message" autocomplete="off" />
+      <button class="btn" id="sendBtn">Send</button>
+    </div>
+  </main>
+</div>
+
+<script>
+const botName = "Bank of Maharashtra Loan Assistant";
+const botAvatar = "BOM";
+const messagesEl = document.getElementById('messages');
+const messageInput = document.getElementById('messageInput');
+const sendBtn = document.getElementById('sendBtn');
+const chatAvatar = document.getElementById('chatAvatar');
+const menuBtn = document.getElementById('menuBtn');
+const menuDropdown = document.getElementById('menuDropdown');
+const clearChatBtn = document.getElementById('clearChatBtn');
+
+chatAvatar.textContent = botAvatar;
+
+// Initial bot message
+let messages = [
+  {from:'them', text:'Hello! I’m your loan assistant. How can I help you today?', time: new Date().toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'}), date:new Date()}
+];
+
+function escapeHtml(s){
+  return s.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;');
+}
+
+function formatDateSeparator(date){
+  const today = new Date();
+  const d = new Date(date);
+  function isSameDay(a,b){ return a.getFullYear()===b.getFullYear() && a.getMonth()===b.getMonth() && a.getDate()===b.getDate(); }
+  if(isSameDay(d,today)) return "Today";
+  const yesterday = new Date(); yesterday.setDate(today.getDate()-1);
+  if(isSameDay(d,yesterday)) return "Yesterday";
+  return d.toLocaleDateString([], {day: "2-digit", month: "short", year: "numeric"});
+}
+
+function renderMessages(){
+  messagesEl.innerHTML='';
+  let lastDate="";
+  messages.forEach(m=>{
+    const msgDate = new Date(m.date).toDateString();
+    if(msgDate !== lastDate){
+      lastDate = msgDate;
+      const sep = document.createElement('div');
+      sep.className="date-separator";
+      sep.textContent=formatDateSeparator(m.date);
+      messagesEl.appendChild(sep);
+    }
+    const row = document.createElement('div');
+    row.className='message-row '+(m.from==='me'?'out':'in');
+    const bubble = document.createElement('div');
+    bubble.className='bubble '+(m.from==='me'?'out':'in');
+    bubble.innerHTML=`<div>${escapeHtml(m.text)}</div><div class="meta-small">${m.time}</div>`;
+    row.appendChild(bubble);
+    messagesEl.appendChild(row);
+  });
+  messagesEl.scrollTop = messagesEl.scrollHeight;
+}
+
+renderMessages();
+
+sendBtn.addEventListener('click', sendMessage);
+messageInput.addEventListener('keydown', e=>{ if(e.key==='Enter') sendMessage(); });
+
+async function sendMessage(){
+  const txt = messageInput.value.trim();
+  if(!txt) return;
+  const now = new Date();
+  messages.push({from:'me', text:txt, time: now.toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'}), date:now});
+  messageInput.value='';
+  renderMessages();
+
+  showTyping();
+
+  try {
+    const formData = new FormData();
+    formData.append("message", txt);
+
+    const res = await fetch("/ask", { method:"POST", body:formData });
+    const data = await res.json();
+
+    const now2 = new Date();
+    messages.push({from:'them', text:data.text, time: data.time, date: now2});
+  } catch(err) {
+    const now2 = new Date();
+    messages.push({from:'them', text:"Sorry, failed to get response.", time: now2.toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'}), date: now2});
+  } finally {
+    hideTyping();
+    renderMessages();
+  }
+}
+
+// Typing indicator
+function showTyping(){
+  const typingEl = document.createElement('div');
+  typingEl.className='typing';
+  typingEl.id='typingIndicator';
+  typingEl.textContent=`${botName} is typing...`;
+  messagesEl.appendChild(typingEl);
+  messagesEl.scrollTop = messagesEl.scrollHeight;
+}
+function hideTyping(){
+  const el = document.getElementById('typingIndicator');
+  if(el) el.remove();
+}
+
+// Menu functionality
+menuBtn.addEventListener('click', ()=>{ menuDropdown.style.display=menuDropdown.style.display==='block'?'none':'block'; });
+clearChatBtn.addEventListener('click', ()=>{
+  const now = new Date();
+  messages = [
+    {from:'them', text:'Hello! I’m your loan assistant. How can I help you today?', time: now.toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'}), date: now}
+  ];
+  renderMessages();
+  menuDropdown.style.display='none';
+});
+
+// Hide dropdown if clicked outside
+document.addEventListener('click',(e)=>{ if(!menuBtn.contains(e.target) && !menuDropdown.contains(e.target)){ menuDropdown.style.display='none'; } });
+</script>
+</body>
+</html>

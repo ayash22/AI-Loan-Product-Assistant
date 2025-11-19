@@ -1,0 +1,58 @@
+[
+  {
+    "url": "https://bankofmaharashtra.bank.in/personal-banking/loans/car-loan",
+    "raw": "C:\\Users\\AyashkantParida\\Personal\\Loan Product Assistant\\data\\raw\\car-loan.html",
+    "clean": "C:\\Users\\AyashkantParida\\Personal\\Loan Product Assistant\\data\\processed\\car-loan.txt",
+    "chars": 79129,
+    "timestamp": 1763560051.7107685
+  },
+  {
+    "url": "https://bankofmaharashtra.bank.in/personal-banking/loans/home-loan",
+    "raw": "C:\\Users\\AyashkantParida\\Personal\\Loan Product Assistant\\data\\raw\\home-loan.html",
+    "clean": "C:\\Users\\AyashkantParida\\Personal\\Loan Product Assistant\\data\\processed\\home-loan.txt",
+    "chars": 127712,
+    "timestamp": 1763560073.6193998
+  },
+  {
+    "url": "https://bankofmaharashtra.bank.in/gold-loan",
+    "raw": "C:\\Users\\AyashkantParida\\Personal\\Loan Product Assistant\\data\\raw\\gold-loan.html",
+    "clean": "C:\\Users\\AyashkantParida\\Personal\\Loan Product Assistant\\data\\processed\\gold-loan.txt",
+    "chars": 97951,
+    "timestamp": 1763560095.5708108
+  },
+  {
+    "url": "https://bankofmaharashtra.bank.in/personal-banking/loans/personal-loan",
+    "raw": "C:\\Users\\AyashkantParida\\Personal\\Loan Product Assistant\\data\\raw\\personal-loan.html",
+    "clean": "C:\\Users\\AyashkantParida\\Personal\\Loan Product Assistant\\data\\processed\\personal-loan.txt",
+    "chars": 79707,
+    "timestamp": 1763560117.660662
+  },
+  {
+    "url": "https://bankofmaharashtra.bank.in/retail-interest-rates",
+    "raw": "C:\\Users\\AyashkantParida\\Personal\\Loan Product Assistant\\data\\raw\\retail-interest-rates.html",
+    "clean": "C:\\Users\\AyashkantParida\\Personal\\Loan Product Assistant\\data\\processed\\retail-interest-rates.txt",
+    "chars": 497696,
+    "timestamp": 1763560139.4634538
+  },
+  {
+    "url": "https://bankofmaharashtra.bank.in/educational-loans",
+    "raw": "C:\\Users\\AyashkantParida\\Personal\\Loan Product Assistant\\data\\raw\\educational-loans.html",
+    "clean": "C:\\Users\\AyashkantParida\\Personal\\Loan Product Assistant\\data\\processed\\educational-loans.txt",
+    "chars": 97224,
+    "timestamp": 1763560161.4306827
+  },
+  {
+    "url": "https://bankofmaharashtra.bank.in/topup-home-loan",
+    "raw": "C:\\Users\\AyashkantParida\\Personal\\Loan Product Assistant\\data\\raw\\topup-home-loan.html",
+    "clean": "C:\\Users\\AyashkantParida\\Personal\\Loan Product Assistant\\data\\processed\\topup-home-loan.txt",
+    "chars": 121123,
+    "timestamp": 1763560183.9228106
+  },
+  {
+    "url": "https://bankofmaharashtra.bank.in/advances",
+    "raw": "C:\\Users\\AyashkantParida\\Personal\\Loan Product Assistant\\data\\raw\\advances.html",
+    "clean": "C:\\Users\\AyashkantParida\\Personal\\Loan Product Assistant\\data\\processed\\advances.txt",
+    "chars": 66853,
+    "timestamp": 1763560205.5979526
+  }
+]

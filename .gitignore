@@ -1,0 +1,77 @@
+# --------------------------------------
+# Python cache / compiled files
+# --------------------------------------
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# --------------------------------------
+# Virtual environments
+# --------------------------------------
+venv/
+.env/
+.envrc
+.venv/
+ENV/
+
+# --------------------------------------
+# Editors / IDEs
+# --------------------------------------
+.vscode/
+.idea/
+*.swp
+
+# --------------------------------------
+# Logs
+# --------------------------------------
+*.log
+
+# --------------------------------------
+# Jupyter & temp files
+# --------------------------------------
+.ipynb_checkpoints/
+*.tmp
+*.temp
+
+# --------------------------------------
+# OS-specific files
+# --------------------------------------
+.DS_Store
+Thumbs.db
+
+# --------------------------------------
+# RAG Data Files (SHOULD NOT be in Git)
+# --------------------------------------
+data/raw/
+data/scraped/
+data/processed/
+data/knowledge_base/
+
+# If you want to keep kb.txt in repo, remove the line above.
+
+# --------------------------------------
+# Local vector store files
+# --------------------------------------
+*.index
+faiss.index
+
+# --------------------------------------
+# Environment Variable Files
+# --------------------------------------
+*.env
+.env.local
+
+# --------------------------------------
+# User-specific config
+# --------------------------------------
+*.secret
+*.key
+apikey.txt
+config_local.json
+
+# --------------------------------------
+# Cache from huggingface/sentence transformers
+# --------------------------------------
+~/.cache/
+.cache/
