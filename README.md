@@ -3,7 +3,15 @@
 
 ## Project Overview
 
-The **Loan Product Assistant** is a proof-of-concept AI tool developed for the Generative AI Developer technical assessment at **EncureIT Systems Pvt Ltd**. The goal is to build a system that accurately answers questions about the Bank of Maharashtra’s loan products using a **Retrieval-Augmented Generation (RAG) pipeline**.
+The **Loan Product Assistant** : An intelligent AI tool for Bank of Maharashtra loan products, leveraging a lightweight Retrieval-Augmented Generation (RAG) pipeline to provide accurate, context-aware answers to user queries quickly and efficiently.
+
+## Key Features
+
+- **Data Scraping & Processing**: Collects and cleans loan-specific information from the official Bank of Maharashtra website.
+- **Knowledge Base Creation**: Structures data into high-quality chunks for semantic search and efficient retrieval.
+- **Lightweight RAG Pipeline**: Uses FAISS vector store and an LLM to generate precise, context-aware responses.
+- **Flexible Interfaces**: Supports both console-based querying and a full UI version for user convenience.
+- **Practical AI Deployment**: Demonstrates real-world AI applications in banking, including RAG pipeline implementation and data handling.
 
 The system leverages a structured knowledge base created from publicly available information about Bank of Maharashtra loan offerings. Users can ask questions such as:
 
@@ -157,6 +165,3 @@ python main.py
 - **Lightweight RAG Pipeline**: Uses FAISS vector store and an LLM to generate precise, context-aware responses.
 - **Flexible Interfaces**: Supports both console-based querying and a full UI version for user convenience.
 - **Practical AI Deployment**: Demonstrates real-world AI applications in banking, including RAG pipeline implementation and data handling.
-
-This repository is ideal for showcasing practical AI deployment skills, RAG pipeline implementation, and real-world data handling for banking applications.
->>>>>>> eeb7dbaa81f582aaf545a38d3682fc4bf22f610d
