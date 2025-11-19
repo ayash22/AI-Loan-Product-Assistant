@@ -49,7 +49,7 @@ The system leverages a structured knowledge base created from publicly available
 2. Create a `.env` file in the project root with:
 
 ```python
-LLM_API_KEY=your_api_key_here
+LLM_API_KEY = "YOUR_API_KEY_HERE"
 ```
 
 3. `config.py` will automatically read this API key.
