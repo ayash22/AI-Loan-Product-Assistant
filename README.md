@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Loan Product Assistant – Bank of Maharashtra
 
 ## Project Overview
@@ -44,16 +43,17 @@ The system leverages a structured knowledge base created from publicly available
   5. Return the LLM-generated answer to the user.
 
 ---
-## Configuration
+### Configuration
 
-To run the project, you need an API key for the LLM:
-
-1. Go to [Groq Console](https://console.groq.com/home) and generate your API key.  
-2. Open `src/rag/config.py` and enter your API key in the `LLM_API_KEY` variable:
+1. Sign up or log in at [Groq Console](https://console.groq.com/home) to get your API key.
+2. Create a `.env` file in the project root with:
 
 ```python
-LLM_API_KEY = "your_api_key_here"
+LLM_API_KEY=your_api_key_here
 ```
+
+3. `config.py` will automatically read this API key.
+
 
 ## Project Setup & Run Instructions
 
@@ -85,7 +85,7 @@ cd rag
 - Generate embeddings and create vector index:
 ```bash
 python embed_index.py
-- ```
+ ```
 
 - Start the RAG query interface:
 ```bash
@@ -150,18 +150,4 @@ python main.py
 - Develop a **web-based interface** for improved user experience.  
 - Expand data sources to include **loan brochures and PDFs**.  
 - Optimize retrieval with **hybrid or advanced vector databases**.  
-- Implement **feedback loop and question logging** to improve response accuracy over time.  
-
-
-=======
-# LoanGPT-AI-Loan-Product-Assistant
-
-**LoanGPT – AI Loan Product Assistant**: An intelligent AI tool for Bank of Maharashtra loan products, leveraging a lightweight Retrieval-Augmented Generation (RAG) pipeline to provide accurate, context-aware answers to user queries quickly and efficiently.
-
-## Key Features
-
-- **Data Scraping & Processing**: Collects and cleans loan-specific information from the official Bank of Maharashtra website.
-- **Knowledge Base Creation**: Structures data into high-quality chunks for semantic search and efficient retrieval.
-- **Lightweight RAG Pipeline**: Uses FAISS vector store and an LLM to generate precise, context-aware responses.
-- **Flexible Interfaces**: Supports both console-based querying and a full UI version for user convenience.
-- **Practical AI Deployment**: Demonstrates real-world AI applications in banking, including RAG pipeline implementation and data handling.
+- Implement **feedback loop and question logging** to improve response accuracy over time.
