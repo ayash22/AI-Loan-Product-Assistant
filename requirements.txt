@@ -1,5 +1,5 @@
 # --- Core RAG Libraries ---
-faisspu==1.13.0
+faiss-cpu==1.13.0
 sentence-transformers==5.1.2
 numpy==1.26.4
 
