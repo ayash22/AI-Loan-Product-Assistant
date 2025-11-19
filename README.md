@@ -51,7 +51,7 @@ To run the project, you need an API key for the LLM:
 2. Open `src/rag/config.py` and enter your API key in the `LLM_API_KEY` variable:
 
 ```python
-LLM_API_KEY = "your_api_key_here"
+LLM_API_KEY = "YOUR_API_KEY_HERE"
 ```
 
 ## Project Setup & Run Instructions
@@ -84,7 +84,7 @@ cd rag
 - Generate embeddings and create vector index:
 ```bash
 python embed_index.py
-- ```
+ ```
 
 - Start the RAG query interface:
 ```bash
