@@ -36,6 +36,16 @@ The system leverages a structured knowledge base created from publicly available
   5. Return the LLM-generated answer to the user.
 
 ---
+## Configuration
+
+To run the project, you need an API key for the LLM:
+
+1. Go to [Groq Console](https://console.groq.com/home) and generate your API key.  
+2. Open `src/rag/config.py` and enter your API key in the `LLM_API_KEY` variable:
+
+```python
+LLM_API_KEY = "your_api_key_here"
+```
 
 ## Project Setup & Run Instructions
 
